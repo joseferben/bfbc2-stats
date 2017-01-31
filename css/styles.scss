@@ -16,6 +16,13 @@
     margin: 2.4em 5.4em 0 0;
 }
 
+.player-name-box {
+	margin-bottom: 3em;
+	.player-name {
+		font-size: 3em;
+	}
+}
+
 .player-list li:hover {
     background-color: #dcdcdc;
 }
@@ -23,13 +30,11 @@
 .player-list {
     list-style-type: none;
     padding: 0;
-}
-
-.player-list li {
-  padding-left: 1em;
-}
-
-.player-list li a {
-  text-decoration: none;
-  color: black;
+    li {
+        padding-left: 1em;
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
