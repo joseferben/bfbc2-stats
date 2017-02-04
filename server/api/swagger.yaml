@@ -1,0 +1,138 @@
+---
+swagger: "2.0"
+info:
+  description: "API of DU4 BFBC2 game server stats"
+  version: "0.0.1"
+  title: "BFBC2 Stats"
+  termsOfService: ""
+  contact:
+    name: "DU4 Gaming"
+    url: "http://www.du4-gaming.com"
+  license:
+    name: "MIT"
+    url: "http://opensource.org/licenses/MIT"
+host: "api.du4-gaming.com"
+basePath: "/api"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /:
+    get:
+      tags:
+      - "default"
+      description: "This is the entry point that displays information about the API."
+      operationId: "rootGET"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/EntryPoint"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Default"
+    x-swagger-router-controller: "Default"
+  /overview:
+    get:
+      tags:
+      - "overview"
+      description: "Returns an overview of the stats for a given backend."
+      operationId: "getOverview"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Overview"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Overview"
+    x-swagger-router-controller: "Overview"
+  /players/{id}:
+    get:
+      tags:
+      - "player"
+      description: "Returns all available stats of a player."
+      operationId: "getAllPlayerStats"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Player"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Player"
+    x-swagger-router-controller: "Players"
+  /swagger:
+    x-swagger-pipe: "swagger_raw"
+definitions:
+  ErrorResponse:
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
+  EntryPoint:
+    required:
+    - "version"
+    properties:
+      version:
+        type: "string"
+  Overview:
+    properties:
+      kills:
+        type: "string"
+  Player:
+    required:
+    - "id"
+    properties:
+      id:
+        type: "string"
+      kills:
+        type: "number"
+      deaths:
+        type: "number"
+      k_s:
+        type: "number"
+      hs_m:
+        type: "number"
+      hs_k:
+        type: "number"
+      time:
+        type: "number"
+      connections:
+        type: "number"
+      weapons:
+        type: "array"
+        items:
+          $ref: "#/definitions/WeaponStat"
+  WeaponStat:
+    required:
+    - "label"
+    properties:
+      label:
+        type: "string"
+      kills:
+        type: "number"
+      deaths:
+        type: "number"
+      hs_k:
+        type: "number"
+      hs_m:
+        type: "number"
