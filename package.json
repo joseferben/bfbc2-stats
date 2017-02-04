@@ -20,7 +20,10 @@
         "jquery": "^3.1.1",
         "webpack": "^1.13.3",
         "webpack-dev-middleware": "^1.8.4",
-        "webpack-hot-middleware": "^2.13.2"
+      "webpack-hot-middleware": "^2.13.2",
+        "connect": "^3.2.0",
+        "js-yaml": "^3.3.0",
+        "swagger-tools": "0.10.1"
     },
     "devDependencies": {
         "babel": "^6.5.2",
