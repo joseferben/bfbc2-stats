@@ -97,7 +97,7 @@ definitions:
   Overview:
     properties:
       kills:
-        type: "string"
+        type: "number"
   Player:
     required:
     - "id"
