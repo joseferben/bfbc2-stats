@@ -4,7 +4,7 @@
 2. [NodeJS](https://nodejs.org/en/)
 3. [Yarn](https://yarnpkg.com/)
 
-I have tested the build with NodeJS v7.2.0 and Docker version 1.13.1-rc1.
+I have tested the build with NodeJS v7.2.0, Yarn v0.17.9 and Docker v1.13.1-rc1.
 
 ### Installation
 
