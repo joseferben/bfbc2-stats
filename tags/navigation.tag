@@ -1,4 +1,6 @@
-<navigation>
+import Playerentry from './Playerentry.tag';
+
+<Navigation>
     <nav class="fix-margin navbar navbar-inverse navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -16,7 +18,7 @@
                                 <div class="dropdown dropdown-lg open">
                                     <div class="player-suggestions dropdown-menu dropdown-menu-right" role="menu">
                                         <ul class="player-list">
-                                            <playerentry each={ TODO(put array with players here) }></playerentry>
+                                            <Playerentry each={ this.players }></Playerentry>
                                         </ul>
                                     </div>
                                 </div>
@@ -39,5 +41,7 @@
         </div>
     </nav>
     <script>
+        //TODO(put array with players here)
+        this.players = [];
     </script>
-</navigation>
+</Navigation>

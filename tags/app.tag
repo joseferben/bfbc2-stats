@@ -1,7 +1,11 @@
-<app>
-	<navigation></navigation>
-	<statsbox></statsbox>
-	<playerstatstable></playerstatstable>
+import Navigation from './Navigation.tag';
+import Statsbox from './Statsbox.tag';
+import Playerstatstable from './Playerstatstable.tag';
+
+<App>
+	<Navigation></Navigation>
+	<Statsbox></Statsbox>
+	<Playerstatstable></Playerstatstable>
 	<footer class="footer">
         <div class="container">
             <span>
@@ -11,4 +15,4 @@
     </footer>
 	<script>
 	</script>
-</app>
+</App>

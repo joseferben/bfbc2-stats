@@ -1,4 +1,4 @@
-<weapon>
+<Weapon>
 	<tr>
 		<th scope="row">{ opts.weaponname }</th>
 		<td>{ opts.kills }</td>
@@ -8,4 +8,4 @@
 	</tr>
 	<script>
 	</script>
-</weapon>
+</Weapon>
