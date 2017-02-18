@@ -1,11 +1,12 @@
 import Navigation from './Navigation.tag';
 import Statsbox from './Statsbox.tag';
 import Playerstatstable from './Playerstatstable.tag';
+import FakeResponse from '../fake-response.json';
 
 <App>
 	<Navigation></Navigation>
-	<Statsbox></Statsbox>
-	<Playerstatstable></Playerstatstable>
+	<Statsbox data={ this.data }></Statsbox>
+	<Playerstatstable data={ this.data }></Playerstatstable>
 	<footer class="footer">
         <div class="container">
             <span>
@@ -14,5 +15,6 @@ import Playerstatstable from './Playerstatstable.tag';
         </div>
     </footer>
 	<script>
+   this.data = FakeResponse;
 	</script>
 </App>
