@@ -21,12 +21,21 @@ module.exports = class DbController {
         return this;
     }
 
+  _query(sql) {
+    return new Promise((resolve, reject) => {
+      this.conn.query(sql, (err, res, fields) => {
+        if (err) throw err;
+        resolve(res);
+      });
+    });
+
+  }
+
     getKills() {
-        return new Promise((resolve, reject) => {
-            this.conn.query('SELECT COUNT(*) AS kills from kills', (err, res, fields) => {
-                if (err) throw err;
-                resolve(res);
-            });
-        });
+      return this._query('SELECT COUNT(*) AS kills from kills');
+    }
+
+    getAllPlayerNames() {
+      return this._query('SELECT name, id FROM clients UNION ALL SELECT alias, client_id FROM aliases');
     }
 };
