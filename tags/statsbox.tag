@@ -1,7 +1,7 @@
 import Infobox from './Infobox.tag';
 
 <Statsbox>
-	<div class="jumbotron">
+    	<div class="jumbotron">
 		<div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -29,5 +29,8 @@ import Infobox from './Infobox.tag';
         </div>
     </div>
 	<script>
+    // TODO(Use the data accessible in opts.data to feed the infobox components by adjusting the markup above)
+    // Hint: you can use console.log(opts.data) like below to print the data to the console
+   console.log(opts.data);
 	</script>
 </Statsbox>

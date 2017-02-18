@@ -18,7 +18,10 @@ import Weapon from './Weapon.tag';
                         <Weapon each={ this.weapons }></Weapon>
                     </tbody>
                     <script>
-                        //TODO(put array with weapons here)
+                        // TODO(Use the data accessible in opts.data to feed the weapon  components by adjusting the markup above)
+                        // Hint: you can use console.log(opts.data) like below to print the data to the console
+
+                        //TODO(get the array of weapons out of opts.data and save it as this.weapons so it can get consumed by the weapon tag)
                         this.weapons = [];
                     </script>
                 </table>
