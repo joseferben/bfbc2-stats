@@ -10,32 +10,31 @@
         "label": "aek",
         "kills": 123,
         "deaths": 12,
-        "hs_k": 0.9,
-        "hs_m": 3
+        "hs": 74
     }, {
         "label": "m60",
         "kills": 3300,
         "deaths": 901,
-        "hs": 1000,
+        "hs": 1000
     }, {
         "label": "op-weapon",
         "kills": 1342,
         "deaths": 42,
-        "hs": 120,
+        "hs": 120
     }, {
         "label": "hmvee",
         "kills": 123,
         "deaths": 12,
-        "hs_k": 0.9,
+        "hs": 20
     }, {
         "label": "uzi",
         "kills": 3320,
         "deaths": 101,
-        "hs": 1294,
+        "hs": 1294
     }, {
         "label": "sniper",
         "kills": 1142,
         "deaths": 12,
-        "hs": 100,
+        "hs": 100
     }]
 }

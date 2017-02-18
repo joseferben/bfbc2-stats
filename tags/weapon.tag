@@ -1,11 +1,9 @@
 <Weapon>
-	<tr>
-		<th scope="row">{ opts.weaponname }</th>
-		<td>{ opts.kills }</td>
-		<td>{ opts.deaths }</td>
-		<td>{ opts.hsperkill }</td>
-		<td>{ opts.hspermin }</td>
-	</tr>
+		<th scope="row">{ weapon.label }</th>
+		<td>{ weapon.kills }</td>
+		<td>{ weapon.deaths }</td>
+		<td>{ weapon.hs }</td>
 	<script>
+	console.log(this.weapon);
 	</script>
 </Weapon>

@@ -1,6 +1,6 @@
 module.exports = class Stats {
 
-    static getOverallStats(kills) {
+    static getOverallStats(arr) {
       return {};
         // TODO(implement)
 
