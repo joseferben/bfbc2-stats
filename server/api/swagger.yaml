@@ -57,6 +57,28 @@ paths:
             $ref: "#/definitions/ErrorResponse"
       x-swagger-router-controller: "Overview"
     x-swagger-router-controller: "Overview"
+  /suggestions/{part}:
+    get:
+      tags:
+      - "player"
+      description: "Returns a list of matching player name given a string."
+      operationId: "getSuggestions"
+      parameters:
+      - name: "part"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Suggestions"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Player"
+    x-swagger-router-controller: "Players"
   /players/{id}:
     get:
       tags:
@@ -136,3 +158,17 @@ definitions:
         type: "number"
       hs_m:
         type: "number"
+  Suggestions:
+    properties:
+      suggestions:
+        type: "array"
+        items:
+          $ref: "#/definitions/Suggestion" 
+  Suggestion:
+    required:
+      - "id"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"

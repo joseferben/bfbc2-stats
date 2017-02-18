@@ -1,7 +1,7 @@
 import Navigation from './Navigation.tag';
 import Statsbox from './Statsbox.tag';
 import Playerstatstable from './Playerstatstable.tag';
-import FakeResponse from '../fake-response.json';
+import FakeResponsePlayer from '../fake-response-player.json';
 
 <App>
 	<Navigation></Navigation>
@@ -15,6 +15,6 @@ import FakeResponse from '../fake-response.json';
         </div>
     </footer>
 	<script>
-   this.data = FakeResponse;
+   this.data = FakeResponsePlayer;
 	</script>
 </App>
