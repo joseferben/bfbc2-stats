@@ -2,10 +2,9 @@
     "id": "123-123-abc",
     "kills": 12323,
     "deaths": 5022,
-    "k_s": 0.1,
-    "hs_m": 0.42,
-    "hs_k": 0.8,
-    "time": 1002341,
+    "hs": 1442,
+    "seconds": 1002341,
+    "score": 123232,
     "connections": 1233,
     "weapons": [{
         "label": "aek",
@@ -17,31 +16,26 @@
         "label": "m60",
         "kills": 3300,
         "deaths": 901,
-        "hs_k": 0.2,
-        "hs_m": 1.2
+        "hs": 1000,
     }, {
         "label": "op-weapon",
         "kills": 1342,
         "deaths": 42,
-        "hs_k": 0.99,
-        "hs_m": 7.1
+        "hs": 120,
     }, {
         "label": "hmvee",
         "kills": 123,
         "deaths": 12,
         "hs_k": 0.9,
-        "hs_m": 0
     }, {
         "label": "uzi",
         "kills": 3320,
         "deaths": 101,
-        "hs_k": 0.8,
-        "hs_m": 1.3
+        "hs": 1294,
     }, {
         "label": "sniper",
         "kills": 1142,
         "deaths": 12,
-        "hs_k": 0.79,
-        "hs_m": 0.1
+        "hs": 100,
     }]
 }

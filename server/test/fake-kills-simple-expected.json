@@ -1,0 +1,18 @@
+{
+    weapons: [{
+        label: "weapon1",
+        kills: 4,
+        hs: 3,
+        deaths: 2
+    }, {
+        label: "weapon2",
+        kills: 3,
+        hs: 2,
+        deaths: 0
+    }, {
+        label: "weapon3",
+        kills: 1,
+        hs: 0,
+        deaths: 1
+    }],
+}

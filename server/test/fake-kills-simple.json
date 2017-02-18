@@ -1,0 +1,76 @@
+{kills: [{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon1",
+    hit_loc: "torso"
+},
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon1",
+    hit_loc: "head"
+},
+
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon1",
+    hit_loc: "head"
+},
+
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon1",
+    hit_loc: "head"
+},
+
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon2",
+    hit_loc: "torso"
+},
+
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon2",
+    hit_loc: "head"
+},
+
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon2",
+    hit_loc: "head"
+},
+
+{
+    killer_id: 1,
+    victim_id: 2,
+    weapon_name: "weapon3",
+    hit_loc: "torso"
+},
+
+{
+    killer_id: 42,
+    victim_id: 1,
+    weapon_name: "weapon1",
+    hit_loc: "torso"
+},
+
+{
+    killer_id: 3,
+    victim_id: 1,
+    weapon_name: "weapon1",
+    hit_loc: "head"
+},
+
+{
+    killer_id: 42,
+    victim_id: 2,
+    weapon_name: "weapon3",
+    hit_loc: "head"
+}]}
+

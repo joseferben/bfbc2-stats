@@ -1,6 +1,18 @@
 const DbController = require('../DbController.js');
+const Stats = require('../Stats.js');
 
 exports.getAllPlayerStats = (args, res, next) => {
+    const playerId = args.id.value;
+    const controller = new DbController().connect();
+    const kills = controller.getAllAffectingKills(playerId);
+    const sessions = controller.getAllSessions(playerId);
+
+    Promise.all([kills, sessions]).then(arr => {
+        const player = Stats.getOverallStats(arr);
+        player.weapons = Stats.getWeaponStats(arr[0]);
+        console.log(player);
+        controller.disconnect();
+    });
     /**
      * Returns all available stats of a player.
      *
@@ -9,21 +21,19 @@ exports.getAllPlayerStats = (args, res, next) => {
      **/
     var examples = {};
     examples['application/json'] = {
-        "kills": 1.3579000000000001069366817318950779736042022705078125,
-        "hs_k": 1.3579000000000001069366817318950779736042022705078125,
-        "hs_m": 1.3579000000000001069366817318950779736042022705078125,
         "id": "aeiou",
-        "time": 1.3579000000000001069366817318950779736042022705078125,
+        "kills": 1.3579000000000001069366817318950779736042022705078125,
+        "deaths": 1.3579000000000001069366817318950779736042022705078125,
+        "hs": 1.3579000000000001069366817318950779736042022705078125,
+        "seconds": 12313131314,
+        "score": 1231313113123,
+        "connections": 123123131231,
         "weapons": [{
-            "kills": 1.3579000000000001069366817318950779736042022705078125,
-            "hs_k": 1.3579000000000001069366817318950779736042022705078125,
-            "hs_m": 1.3579000000000001069366817318950779736042022705078125,
             "label": "aeiou",
+            "kills": 1.3579000000000001069366817318950779736042022705078125,
+            "headshots": 1231231231,
             "deaths": 1.3579000000000001069366817318950779736042022705078125
         }],
-        "deaths": 1.3579000000000001069366817318950779736042022705078125,
-        "k_s": 1.3579000000000001069366817318950779736042022705078125,
-        "connections": 1.3579000000000001069366817318950779736042022705078125
     };
     if (Object.keys(examples).length > 0) {
         res.setHeader('Content-Type', 'application/json');

@@ -4,6 +4,7 @@
     "description": "Stats page for Battlefield Bad Company 2",
     "main": "index.js",
     "scripts": {
+        "test": "./node_modules/.bin/mocha --compilers js:babel-core/register",
         "backend": "node ./server/server.js",
         "serve": "./node_modules/.bin/webpack-dev-server --inline --hot --progress --colors"
     },
@@ -36,10 +37,12 @@
         "bootstrap-loader": "^2.0.0-beta.12",
         "bootstrap-sass": "^3.3.7",
         "css-loader": "^0.25.0",
+        "expect.js": "^0.3.1",
         "expose-loader": "^0.7.1",
         "file-loader": "^0.9.0",
         "imports-loader": "^0.6.5",
         "json-loader": "^0.5.4",
+        "mocha": "^3.2.0",
         "node-sass": "^3.10.1",
         "raw-loader": "^0.5.1",
         "resolve-url-loader": "^1.6.0",

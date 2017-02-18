@@ -130,13 +130,11 @@ definitions:
         type: "number"
       deaths:
         type: "number"
-      k_s:
+      hs:
         type: "number"
-      hs_m:
+      seconds:
         type: "number"
-      hs_k:
-        type: "number"
-      time:
+      score:
         type: "number"
       connections:
         type: "number"
@@ -154,9 +152,7 @@ definitions:
         type: "number"
       deaths:
         type: "number"
-      hs_k:
-        type: "number"
-      hs_m:
+      hs:
         type: "number"
   Suggestions:
     properties:
