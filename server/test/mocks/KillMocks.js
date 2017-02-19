@@ -95,7 +95,7 @@ module.exports = class Mocks {
                 label: "weapon3",
                 kills: 1,
                 hs: 0,
-                deaths: 1
+                deaths: 0
             }],
         };
     }

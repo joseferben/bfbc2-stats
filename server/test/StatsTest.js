@@ -10,16 +10,17 @@ describe('StatsTest ', () => {
 
     describe('getWeaponStats ', () => {
 
-        it('should return empty array given empty array', () => {
-            const actual = sut.getWeaponStats([]);
+        it('should return empty array given empty array and invalid id', () => {
+            const actual = sut.getWeaponStats([], -1);
 
             expect(actual).to.be.an('array');
             expect(actual).to.eql([]);
         });
 
-        it('should return stats for each weapon given an array of kills', () => {
-            const actual = sut.getWeaponStats(KillMocks.simpleKills());
-            const expected = KillMocks.weaponStats();
+        it('should return stats for each weapon given an array of kills and id of 1', () => {
+            const expected = KillMocks.weaponStats().weapons;
+
+            const actual = sut.getWeaponStats(KillMocks.simpleKills().kills, 1);
 
             expect(actual).to.eql(expected);
         });
@@ -34,20 +35,162 @@ describe('StatsTest ', () => {
             expect(actual).to.be(false);
         });
 
-        it('should return false given weapon with that label is not contained in array of weapons', () => {
-            const weapons = [{ label: "weapon1" }, { label: "weapon2" }];
+        it('should return false given weapon label is not contained in array of weapons', () => {
+            const weapons = [{ label: 'weapon1' }, { label: 'weapon2' }];
             const actual = sut._hasWeaponLabel('testLabel', weapons);
 
             expect(actual).to.be(false);
-        })
+        });
 
-        it('should return true given weapon with that label is contained in array of weapons', () => {
-            const weapons = [{ label: "weapon1" }, { label: "weapon2" }];
+        it('should return true given weapon label is contained in array of weapons', () => {
+            const weapons = [{ label: 'weapon1' }, { label: 'weapon2' }];
             const actual = sut._hasWeaponLabel('weapon2', weapons);
 
             expect(actual).to.be(true);
-        })
-    })
+        });
+    });
+
+    describe('_getWeaponStatFromKill', () => {
+
+        it('should return valid weapon stat given valid kill and id is killer_id', () => {
+            const kill = {
+                killer_id: 42,
+                victim_id: 2,
+                weapon_name: 'weapon3',
+                hit_loc: 'head'
+            };
+
+            const expected = {
+                label: 'weapon3',
+                kills: 1,
+                deaths: 0,
+                hs: 1
+            };
+
+            const actual = sut._getWeaponStatFromKill(kill, 42);
+
+            expect(actual).to.eql(expected);
+        });
+
+        it('should return valid weapon stat given valid kill and id is victim_id', () => {
+            const kill = {
+                killer_id: 42,
+                victim_id: 2,
+                weapon_name: 'weapon3',
+                hit_loc: 'torso'
+            };
+
+            const expected = {
+                label: 'weapon3',
+                kills: 0,
+                deaths: 1,
+                hs: 0
+            };
+
+            const actual = sut._getWeaponStatFromKill(kill, 2);
+
+            expect(actual).to.eql(expected);
+        });
+
+        it('should return valid weapon stat given valid kill and id is not contained id', () => {
+            const kill = {
+                killer_id: 42,
+                victim_id: 2,
+                weapon_name: 'weapon3',
+                hit_loc: 'torso'
+            };
+
+            const expected = {
+                label: 'weapon3',
+                kills: 0,
+                deaths: 0,
+                hs: 0
+            };
+
+            const actual = sut._getWeaponStatFromKill(kill, 61);
+
+            expect(actual).to.eql(expected);
+        });
+    });
+
+    describe('_addKill', () => {
+
+        it('should return the same weapon stats as the given valid weapon stats given empty kill and invalid id', () => {
+            const kill = {
+                killer_id: 42,
+                victim_id: 2,
+                weapon_name: 'weapon3',
+                hit_loc: 'torso'
+            };
+
+            const actual = sut._addKill(KillMocks.weaponStats().weapons, kill, -1);
+
+            expect(actual).to.eql(KillMocks.weaponStats().weapons);
+
+        });
+
+        it('should return the added weapon stats to the given valid weapon stats given valid kill where killer_id equals id', () => {
+            const kill = {
+                killer_id: 42,
+                victim_id: 2,
+                weapon_name: 'weapon3',
+                hit_loc: 'head'
+            };
+
+            const expected = [{
+                label: "weapon1",
+                kills: 4,
+                hs: 3,
+                deaths: 2
+            }, {
+                label: "weapon2",
+                kills: 3,
+                hs: 2,
+                deaths: 0
+            }, {
+                label: "weapon3",
+                kills: 2,
+                hs: 1,
+                deaths: 0
+            }]
+
+            const actual = sut._addKill(KillMocks.weaponStats().weapons, kill, 42);
+
+            expect(actual).to.eql(expected);
+
+        });
+        
+        it('should return the added weapon stats to the given valid weapon stats given valid kill where victim_id equals id', () => {
+            const kill = {
+                killer_id: 42,
+                victim_id: 2,
+                weapon_name: 'weapon3',
+                hit_loc: 'torso'
+            };
+
+            const expected = [{
+                label: "weapon1",
+                kills: 4,
+                hs: 3,
+                deaths: 2
+            }, {
+                label: "weapon2",
+                kills: 3,
+                hs: 2,
+                deaths: 0
+            }, {
+                label: "weapon3",
+                kills: 1,
+                hs: 0,
+                deaths: 1
+            }]
+
+            const actual = sut._addKill(KillMocks.weaponStats().weapons, kill, 2);
+
+            expect(actual).to.eql(expected);
+
+        });
+    });
 
     describe('getOverallStats ', () => {
 
