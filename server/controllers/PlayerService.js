@@ -8,6 +8,7 @@ exports.getAllPlayerStats = (args, res, next) => {
     const sessions = controller.getAllSessions(playerId);
 
     Promise.all([kills, sessions]).then(arr => {
+      console.log(arr[1])
         const player = Stats.getOverallStats(arr);
         player.weapons = Stats.getWeaponStats(arr[0]);
         console.log(player);
