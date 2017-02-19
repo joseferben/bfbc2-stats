@@ -17,13 +17,7 @@ import Weapon from './Weapon.tag';
                         <tr each={ weapon in this.weapons } data-is="weapon"></tr>
                     </tbody>
                     <script>
-                        // TODO(Use the data accessible in opts.data to feed the weapon components by adjusting the markup above)
-                        // Hint: you can use console.log(opts.data) like below to print the data to the console
-
-                        //TODO(get the array of weapons out of opts.data and save it as this.weapons so it can get consumed by the weapon tag)
-                        this.weapons = opts.data.weapons;
-                        console.log(this.weapons);    
-
+                        this.weapons = opts.data.weapons;   
                     </script>
                 </table>
             </div>

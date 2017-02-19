@@ -13,8 +13,7 @@ module.exports = class Stats {
     }
 
     static _getConnections(sessions) {
-        return 0;
-        // TODO(implement);
+        return sessions.length;
     }
 
     static _getTimePlayed(sessions) {
