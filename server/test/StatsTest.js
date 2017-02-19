@@ -26,6 +26,29 @@ describe('StatsTest ', () => {
 
     });
 
+    describe('_hasWeaponLabel', () => {
+
+        it('should return false given empty label and empty array of weapons', () => {
+            const actual = sut._hasWeaponLabel('', []);
+
+            expect(actual).to.be(false);
+        });
+
+        it('should return false given weapon with that label is not contained in array of weapons', () => {
+            const weapons = [{ label: "weapon1" }, { label: "weapon2" }];
+            const actual = sut._hasWeaponLabel('testLabel', weapons);
+
+            expect(actual).to.be(false);
+        })
+
+        it('should return true given weapon with that label is contained in array of weapons', () => {
+            const weapons = [{ label: "weapon1" }, { label: "weapon2" }];
+            const actual = sut._hasWeaponLabel('weapon2', weapons);
+
+            expect(actual).to.be(true);
+        })
+    })
+
     describe('getOverallStats ', () => {
 
         it('should return empty object given empty array', () => {
