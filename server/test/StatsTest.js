@@ -1,14 +1,28 @@
 const expect = require('expect.js');
 
 const Stats = require('../Stats.js');
-const FakeKillsSimple = require('./fake-kills-simple.json');
-const FakeKillsSimpleExpected = require('./fake-kills-simple-expected.json');
+const Mocks = require('./Mocks.js');
 
-describe('StatsTest', () => {
+describe('StatsTest ', () => {
 
-    it('should return empty array given empty array', () => {
-      const sut = Stats;
+    describe('getWeaponStats ', () => {
 
-      expect([]).to.be.an('array');
+        it('should return empty array given empty array', () => {
+            const sut = Stats;
+            const actual = sut.getWeaponStats([]);
+
+            expect(actual).to.be.an('array');
+            expect(actual).to.eql([]);
+        });
+
+        it('should return stats for each weapon given an array of kills', () => {
+          const sut = Stats;
+          const actual = sut.getWeaponStats(Mocks.simpleKills());
+          const expected = Mocks.weaponStats();
+
+          expect(actual).to.eql(expected);
+        });
+
     });
+
 });
