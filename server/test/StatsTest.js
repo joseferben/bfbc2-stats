@@ -36,14 +36,22 @@ describe('StatsTest ', () => {
         });
 
         it('should return false given weapon label is not contained in array of weapons', () => {
-            const weapons = [{ label: 'weapon1' }, { label: 'weapon2' }];
+            const weapons = [{
+                label: 'weapon1'
+            }, {
+                label: 'weapon2'
+            }];
             const actual = sut._hasWeaponLabel('testLabel', weapons);
 
             expect(actual).to.be(false);
         });
 
         it('should return true given weapon label is contained in array of weapons', () => {
-            const weapons = [{ label: 'weapon1' }, { label: 'weapon2' }];
+            const weapons = [{
+                label: 'weapon1'
+            }, {
+                label: 'weapon2'
+            }];
             const actual = sut._hasWeaponLabel('weapon2', weapons);
 
             expect(actual).to.be(true);
@@ -159,7 +167,7 @@ describe('StatsTest ', () => {
             expect(actual).to.eql(expected);
 
         });
-        
+
         it('should return the added weapon stats to the given valid weapon stats given valid kill where victim_id equals id', () => {
             const kill = {
                 killer_id: 42,
