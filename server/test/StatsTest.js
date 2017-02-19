@@ -26,6 +26,24 @@ describe('StatsTest ', () => {
 
     });
 
+    describe('getOverallStats ', () => {
+
+        it('should return empty object given empty array', () => {
+            const actual = sut.getOverallStats([]);
+
+            expect(actual).to.be.an('object');
+            expect(actual).to.eql({});
+        });
+
+        it('should return overall stats for given an array of sessions', () => {
+            const actual = sut.getOverallStats(SessionMocks.sessions());
+            const expected = SessionMocks.overallStats();
+
+            expect(actual).to.eql(expected);
+        });
+
+    });
+
     describe('_getConnections ', () => {
 
         it('should return zero connections given an empty array of sessions', () => {

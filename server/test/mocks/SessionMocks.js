@@ -27,4 +27,12 @@ module.exports = class SessionsMocks {
             date_time: '2017-01-25 21:11:53'
         }];
     }
+
+    static overallStats() {
+        return {
+            seconds: 18,
+            score: 26,
+            connections: 5,
+        };
+    }
 }
