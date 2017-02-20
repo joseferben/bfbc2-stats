@@ -6,7 +6,7 @@ import dispatcher from '../Dispatcher.js';
 const baseUrl = 'http://localhost:8080/api';
 
 const Actions = {
-  searchPlayer(part, timeStamp) {
+    searchPlayer(part) {
         dispatcher.dispatch({
             type: actionTypes.SEARCH_PLAYER_START,
             part,
@@ -24,7 +24,20 @@ const Actions = {
     },
 
     loadPlayer(id) {
-        //TODO(implement);
+        dispatcher.dispatch({
+            type: actionTypes.LOAD_PLAYER_START,
+            id,
+        });
+
+        axios.get(`${baseUrl}/players/${id}`)
+            .then(res => dispatcher.dispatch({
+                type: actionTypes.LOAD_PLAYER_SUCCEED,
+                suggestions: res.data,
+            }))
+            .catch(err => dispatcher.dispatch({
+                type: actionTypes.LOAD_PLAYER_FAIL,
+                err: err,
+            }));
     },
 
     loadGeneral() {

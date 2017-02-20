@@ -49,7 +49,11 @@ exports.getSuggestions = (args, res, next) => {
 
     controller.getAllPlayerNames().then(val => {
         const suggestions = {
-            suggestions: val.filter(cur => cur.name.includes(part))
+            suggestions: val
+                .filter(cur => cur.name.includes(part))
+                .reduce((a, b) => {
+                    return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
+                }, [])
         };
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(suggestions));
