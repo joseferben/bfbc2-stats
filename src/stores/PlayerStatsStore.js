@@ -1,6 +1,6 @@
 import {
     Action
-} from '../Actions';
+} from '../actions/Actions';
 
 import {
     ReduceStore
@@ -11,4 +11,14 @@ class PlayerStatsStore extends ReduceStore {
     constructor() {
         super(Dispatcher);
     }
+
+    getInitialState() {
+        return {};
+    }
+
+    reduce(state, action) {
+        //TODO(implement player loading)
+        return {};
+    }
+
 }
