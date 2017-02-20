@@ -13,26 +13,38 @@ export default class WeaponListStore extends ReduceStore {
     }
 
     getInitialState() {
-        return [];
+        return {
+            loading: false,
+            wepons: []
+        };
     }
 
     reduce(state, action) {
         switch (action.type) {
             case 'LOAD_PLAYER_START':
                 {
-                    //do nothing, by default show loading bar while state is empty array
-                    return state;
+                    return {
+                        loading: true,
+                        weapons: [],
+                    };
                 }
 
             case 'LOAD_PLAYER_SUCCEED':
                 {
+                    return {
+                        loading: false,
+                        weapons: action.weaponStats,
+                    };
                     return action.weaponStats;
                 }
 
             case 'LOAD_PLAYER_FAIL':
                 {
-                    console.log(`Failed to load player with id ${action.id}`);
-                    return state;
+                    console.log(`Failed to load player with id ${action.id}, error: ${action.err}`);
+                  return {
+                    loading: false,
+                    weapons: [],
+                  };
                 }
 
             default:
