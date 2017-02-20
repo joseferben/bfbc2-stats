@@ -7,6 +7,7 @@ module.exports = {
         path: path.join(__dirname, '/app'),
         filename: 'bundle.js',
     },
+
     devtool: 'source-map',
     devServer: {
         contentBase: './app',
@@ -20,6 +21,7 @@ module.exports = {
             },
         },
     },
+
     plugins: [
         new webpack.ProvidePlugin({
             riot: 'riot',

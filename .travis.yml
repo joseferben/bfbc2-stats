@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "6"
 before_script:
-  - yarn test
+  - yarn test-server
+  - yarn test-client
 script:
-  - yarn dist
+  - yarn dist-client

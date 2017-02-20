@@ -4,10 +4,15 @@
     "description": "Stats page for Battlefield Bad Company 2",
     "main": "index.js",
     "scripts": {
-        "dist": "./node_modules/webpack/bin/webpack.js",
-        "test": "./node_modules/.bin/mocha */test --compilers js:babel-core/register",
-        "backend": "node ./server/server.js",
-        "serve": "./node_modules/.bin/webpack-dev-server --inline --hot --progress --colors"
+        "start-dev": "npm run start-backend && npm run start-client-dev",
+        "test-all": "npm run test-server && npm run test-client",
+        "dist-client": "./node_modules/webpack/bin/webpack.js",
+        "test-server": "./node_modules/.bin/mocha */test --compilers js:babel-core/register ",
+        "test-client": "npm run bundle-client-tests && npm run run-client-tests",
+        "run-client-tests": "./node_modules/mocha/bin/mocha app/tests.js",
+        "bundle-client-tests": "./node_modules/webpack/bin/webpack.js --config webpack.test.config.js ",
+        "start-backend": "node ./server/server.js",
+        "start-client-dev": "./node_modules/.bin/webpack-dev-server --inline --hot --progress --colors"
     },
     "repository": {
         "type": "git",
