@@ -5,6 +5,9 @@ import {
 import {
     ReduceStore
 } from 'flux/utils';
+
+import actionTypes from '../actions/ActionTypes';
+
 import dispatcher from '../Dispatcher';
 
 export default class WeaponListStore extends ReduceStore {
@@ -21,7 +24,7 @@ export default class WeaponListStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
-            case 'LOAD_PLAYER_START':
+            case actionTypes.LOAD_PLAYER_START:
                 {
                     return {
                         loading: true,
@@ -29,7 +32,7 @@ export default class WeaponListStore extends ReduceStore {
                     };
                 }
 
-            case 'LOAD_PLAYER_SUCCEED':
+            case actionTypes.LOAD_PLAYER_SUCCEED:
                 {
                     return {
                         loading: false,
@@ -38,7 +41,7 @@ export default class WeaponListStore extends ReduceStore {
                     return action.weaponStats;
                 }
 
-            case 'LOAD_PLAYER_FAIL':
+            case actionTypes.LOAD_PLAYER_FAIL:
                 {
                     console.log(`Failed to load player with id ${action.id}, error: ${action.err}`);
                   return {
