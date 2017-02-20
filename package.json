@@ -4,8 +4,8 @@
     "description": "Stats page for Battlefield Bad Company 2",
     "main": "index.js",
     "scripts": {
-      "dist": "./node_modules/webpack/bin/webpack.js",
-      "test": "./node_modules/.bin/mocha */test --compilers js:babel-core/register",
+        "dist": "./node_modules/webpack/bin/webpack.js",
+        "test": "./node_modules/.bin/mocha */test --compilers js:babel-core/register",
         "backend": "node ./server/server.js",
         "serve": "./node_modules/.bin/webpack-dev-server --inline --hot --progress --colors"
     },
@@ -20,11 +20,13 @@
     },
     "homepage": "https://github.com/jerben/bfbc2-stats#readme",
     "dependencies": {
+        "axios": "^0.15.3",
         "connect": "^3.2.0",
         "flux": "^3.1.2",
         "jquery": "^3.1.1",
         "js-yaml": "^3.3.0",
         "mysql": "^2.13.0",
+        "react": "^15.4.2",
         "riot": "^3.1.1",
         "swagger-tools": "0.10.1",
         "webpack": "^1.13.3",

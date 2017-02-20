@@ -7,7 +7,7 @@ import {
 } from 'flux/utils';
 import dispatcher from '../Dispatcher';
 
-export default class WeaponListStore extends ReduceStore {
+export default class PlayerSuggestionsStore extends ReduceStore {
     constructor() {
         super(dispatcher);
     }
@@ -18,20 +18,21 @@ export default class WeaponListStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
-            case 'LOAD_PLAYER_START':
+            case 'SEARCH_PLAYER_START':
                 {
                     //do nothing, by default show loading bar while state is empty array
                     return state;
                 }
 
-            case 'LOAD_PLAYER_SUCCEED':
+            case 'SEARCH_PLAYER_SUCCEED':
                 {
-                    return action.weaponStats;
+                    console.log(action);
+                    return action.suggestions;
                 }
 
-            case 'LOAD_PLAYER_FAIL':
+            case 'SEARCH_PLAYER_FAIL':
                 {
-                    console.log(`Failed to load player with id ${action.id}`);
+                    console.log(`Failed to load suggestions with string ${action.part}`);
                     return state;
                 }
 
@@ -40,4 +41,5 @@ export default class WeaponListStore extends ReduceStore {
 
         }
     }
+
 }

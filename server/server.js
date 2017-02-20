@@ -5,7 +5,7 @@ const swaggerTools = require('swagger-tools');
 const jsyaml = require('js-yaml');
 const fs = require('fs');
 
-const serverPort = 8080;
+const serverPort = 8081;
 const path = require('path');
 // swaggerRouter configuration
 const options = {

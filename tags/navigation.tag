@@ -1,4 +1,4 @@
-import Playerentry from './Playerentry.tag';
+import Playerentry from './Playerentry.tag'; import action from '../src/actions/Actions';
 
 <Navigation>
     <nav class="fix-margin navbar navbar-inverse navbar-static-top">
@@ -10,9 +10,9 @@ import Playerentry from './Playerentry.tag';
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Summary</a></li>
                 </ul>
-                <form class="navbar-form navbar-right">
+                <form id="playersearch" class="navbar-form navbar-right">
                     <div class="input-group" id="adv-search">
-                        <input type="text" class="form-control" placeholder="Search for player">
+                        <input type="text" class="form-control" name="name" oninput={ handleSearchInput } placeholder="Search for player">
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
                                 <div class="dropdown dropdown-lg open">
@@ -41,7 +41,10 @@ import Playerentry from './Playerentry.tag';
         </div>
     </nav>
     <script>
-        //TODO(put array with players here)
+        this.handleSearchInput = (evt) => {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => action.searchPlayer(evt.target.value), 500);
+        }
         this.players = [];
     </script>
 </Navigation>
