@@ -36,9 +36,9 @@ export default class WeaponListStore extends ReduceStore {
                 {
                     return {
                         loading: false,
-                        weapons: action.weaponStats,
+                        weapons: action.weapons,
                     };
-                    return action.weaponStats;
+                    return action.weapons;
                 }
 
             case actionTypes.LOAD_PLAYER_FAIL:
