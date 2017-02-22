@@ -47,7 +47,7 @@ exports.getSuggestions = (args, res, next) => {
     const part = args.part.value;
     const controller = new DbController().connect();
 
-    controller.getAllPlayerNames().then(val => {
+    controller.getMatchingPlayerNames(part).then(val => {
         const suggestions = {
             suggestions: val
                 .filter(cur => cur.name.includes(part))

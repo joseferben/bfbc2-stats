@@ -18,7 +18,7 @@ import Playerentry from './Playerentry.tag'; import action from '../src/actions/
                                 <div class="dropdown dropdown-lg open">
                                     <div class="player-suggestions dropdown-menu dropdown-menu-right" role="menu">
                                         <ul class="player-list">
-                                            <Playerentry each={ this.players }></Playerentry>
+                                            <Playerentry each={  opts.data.suggestions }></Playerentry>
                                         </ul>
                                     </div>
                                 </div>
@@ -43,9 +43,7 @@ import Playerentry from './Playerentry.tag'; import action from '../src/actions/
     <script>
         this.handleSearchInput = (evt) => {
             clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => action.searchPlayer(evt.target.value), 500);
+            this.timeout = setTimeout(() => action.searchPlayer(evt.target.value), 100);
         }
-        this.players = opts.data.suggestions;
-        console.log(this.players)
     </script>
 </Navigation>

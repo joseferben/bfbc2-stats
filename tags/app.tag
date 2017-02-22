@@ -20,12 +20,13 @@ import actions from '../src/actions/Actions';
     </footer>
     <script>
         this.data = FakeResponsePlayer;
-        this.suggestiondata = FakeSuggestion;
-
+        
         this.store = new PlayerSuggestionsStore();
 
         this.store.__emitter.addListener('change', () => {
-            this.update();
+            this.suggestiondata = this.store.getState();
+            console.log(this.store.getState());
+            riot.update();
         });
 
     </script>

@@ -24,7 +24,7 @@ module.exports = class DbController {
     _query(sql) {
         return new Promise((resolve, reject) => {
             this.conn.query(sql, (err, res, fields) => {
-              if (err) reject(`Could not run query ${sql}, `, err);
+                if (err) reject(`Could not run query ${sql}, `, err);
                 resolve(res);
             });
         });
@@ -35,8 +35,12 @@ module.exports = class DbController {
         return this._query(`SELECT COUNT(*) AS kills from kills`);
     }
 
-    getAllPlayerNames() {
-        return this._query(`SELECT name, id FROM clients UNION ALL SELECT alias, client_id FROM aliases`);
+    getMatchingPlayerNames(name) {
+        return this._query(`SELECT * 
+                            FROM
+                                (SELECT name, id FROM clients UNION ALL SELECT alias, client_id FROM aliases) AS namesAndIds
+                                WHERE namesAndIds.name LIKE \'%${name}%\'
+                                LIMIT 20;`);
     }
 
     getAllAffectingKills(id) {

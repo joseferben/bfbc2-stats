@@ -31,7 +31,6 @@ export default class PlayerSuggestionsStore extends ReduceStore {
 
             case 'SEARCH_PLAYER_SUCCEED':
                 {
-                    console.log(action);
                     return {
                         loading: false,
                         suggestions: action.suggestions,
