@@ -2,12 +2,13 @@ import Navigation from './Navigation.tag';
 import Statsbox from './Statsbox.tag';
 import Playerstatstable from './Playerstatstable.tag';
 import FakeResponsePlayer from '../fake-response-player.json';
+import FakeSuggestion from '../fake-suggestions.json'
 
 import PlayerSuggestionsStore from '../src/stores/PlayerSuggestionsStore';
 import actions from '../src/actions/Actions';
 
 <App>
-    <Navigation></Navigation>
+    <Navigation data ={ this.suggestiondata }></Navigation>
     <Statsbox data={ this.data }></Statsbox>
     <Playerstatstable data={ this.data }></Playerstatstable>
     <footer class="footer">
@@ -19,6 +20,7 @@ import actions from '../src/actions/Actions';
     </footer>
     <script>
         this.data = FakeResponsePlayer;
+        this.suggestiondata = FakeSuggestion;
 
         this.store = new PlayerSuggestionsStore();
 

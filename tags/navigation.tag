@@ -45,6 +45,7 @@ import Playerentry from './Playerentry.tag'; import action from '../src/actions/
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => action.searchPlayer(evt.target.value), 500);
         }
-        this.players = [];
+        this.players = opts.data.suggestions;
+        console.log(this.players)
     </script>
 </Navigation>
