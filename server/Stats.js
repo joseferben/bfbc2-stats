@@ -36,12 +36,17 @@ module.exports = class Stats {
         });
     }
 
-    static getOverallStats(arr) {
-      return {
-        connections: arr.length,
-        score: arr.reduce((a, b) => a + b.score, 0),
-        seconds: arr.reduce((a, b) => a + b.length, 0)
-      };
+    static getOverallStats(arr, playerId) {
+        const kills = arr[0];
+        const sessions = arr[1];
+        return {
+            kills: kills.filter(cur => cur.killer_id === playerId).length,
+            deaths: kills.filter(cur => cur.victim_id === playerId).length,
+            hs: kills.filter(cur => cur.killer_id === playerId && cur.hit_loc === 'head').length,
+            connections: sessions.length,
+            score: sessions.reduce((a, b) => a + b.score, 0),
+            seconds: sessions.reduce((a, b) => a + b.length, 0)
+        };
     }
 
     static _getConnections(sessions) {

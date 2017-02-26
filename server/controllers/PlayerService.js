@@ -2,13 +2,13 @@ const DbController = require('../DbController.js');
 const Stats = require('../Stats.js');
 
 exports.getAllPlayerStats = (args, res, next) => {
-  const playerId = parseInt(args.id.value);
+    const playerId = parseInt(args.id.value);
     const controller = new DbController().connect();
     const kills = controller.getAllAffectingKills(playerId);
     const sessions = controller.getAllSessions(playerId);
 
     Promise.all([kills, sessions]).then(arr => {
-        const player = Stats.getOverallStats(arr[1]);
+        const player = Stats.getOverallStats(arr, playerId);
         player.weapons = Stats.getWeaponStats(arr[0], playerId);
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(player));
