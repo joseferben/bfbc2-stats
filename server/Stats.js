@@ -32,14 +32,16 @@ module.exports = class Stats {
                 kills: cur.label === kill.weapon_name && id === kill.killer_id ? cur.kills + 1 : cur.kills,
                 hs: cur.label === kill.weapon_name && id === kill.killer_id && kill.hit_loc === 'head' ? cur.hs + 1 : cur.hs,
                 deaths: cur.label === kill.weapon_name && id === kill.victim_id ? cur.deaths + 1 : cur.deaths,
-            }
+            };
         });
     }
 
     static getOverallStats(arr) {
-        return {};
-        // TODO(implement)
-
+      return {
+        connections: arr.length,
+        score: arr.reduce((a, b) => a + b.score, 0),
+        seconds: arr.reduce((a, b) => a + b.length, 0)
+      };
     }
 
     static _getConnections(sessions) {

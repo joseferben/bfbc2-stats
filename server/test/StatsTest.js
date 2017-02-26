@@ -160,7 +160,7 @@ describe('StatsTest ', () => {
                 kills: 2,
                 hs: 1,
                 deaths: 0
-            }]
+            }];
 
             const actual = sut._addKill(KillMocks.weaponStats().weapons, kill, 42);
 
@@ -191,7 +191,7 @@ describe('StatsTest ', () => {
                 kills: 1,
                 hs: 0,
                 deaths: 1
-            }]
+            }];
 
             const actual = sut._addKill(KillMocks.weaponStats().weapons, kill, 2);
 
@@ -206,7 +206,11 @@ describe('StatsTest ', () => {
             const actual = sut.getOverallStats([]);
 
             expect(actual).to.be.an('object');
-            expect(actual).to.eql({});
+            expect(actual).to.eql({
+                connections: 0,
+                score: 0,
+                seconds: 0
+            });
         });
 
         it('should return overall stats for given an array of sessions', () => {
