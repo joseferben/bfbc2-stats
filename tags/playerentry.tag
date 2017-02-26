@@ -1,5 +1,10 @@
+import action from '../src/actions/Actions';
+
 <Playerentry>
-    <li><span><a href="/api/players/{ id }">{ name }</a></span></li>
+    <li><span><a onclick={ loadPlayer } href="#">{ name }</a></span></li>
     <script>
+        this.loadPlayer = (evt) => {
+            action.loadPlayer(evt.item.id);
+        };
     </script>
 </Playerentry>

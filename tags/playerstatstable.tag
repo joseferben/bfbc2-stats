@@ -14,10 +14,9 @@ import Weapon from './Weapon.tag';
                         </tr>            
                     </thead>
                     <tbody>
-                        <tr each={ weapon in this.weapons } data-is="weapon"></tr>
+                        <tr each={ weapon in opts.data } data-is="weapon"></tr>
                     </tbody>
                     <script>
-                        this.weapons = opts.data.weapons;   
                     </script>
                 </table>
             </div>

@@ -32,7 +32,7 @@ const Actions = {
         axios.get(`${baseUrl}/players/${id}`)
             .then(res => dispatcher.dispatch({
                 type: actionTypes.LOAD_PLAYER_SUCCEED,
-                suggestions: res.data,
+                data: res.data,
             }))
             .catch(err => dispatcher.dispatch({
                 type: actionTypes.LOAD_PLAYER_FAIL,
@@ -42,7 +42,7 @@ const Actions = {
 
     loadGeneral() {
         //TODO(implement);
-    }
+    },
 }
 
 export default Actions;

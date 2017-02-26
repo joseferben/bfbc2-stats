@@ -1,11 +1,11 @@
 import expect from 'expect.js';
 
-import WeaponListStore from '../WeaponListStore';
+import PlayerStore from '../PlayerStore';
 import actionTypes from '../../actions/ActionTypes';
 
-const sut = new WeaponListStore();
+const sut = new PlayerStore();
 
-describe('WeaponListStore', () => {
+describe('PlayerStore', () => {
 
     it('should be loading weapon list given LOAD_PLAYER_START and initial state', () => {
         const state = {

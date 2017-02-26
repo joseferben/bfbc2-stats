@@ -5,6 +5,8 @@ import {
 import {
     ReduceStore
 } from 'flux/utils';
+import actionTypes from '../actions/ActionTypes';
+
 import dispatcher from '../Dispatcher';
 
 export default class PlayerSuggestionsStore extends ReduceStore {
@@ -21,7 +23,7 @@ export default class PlayerSuggestionsStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
-            case 'SEARCH_PLAYER_START':
+            case actionTypes.SEARCH_PLAYER_START:
                 {
                     return {
                         loading: true,
@@ -29,7 +31,7 @@ export default class PlayerSuggestionsStore extends ReduceStore {
                     };
                 }
 
-            case 'SEARCH_PLAYER_SUCCEED':
+            case actionTypes.SEARCH_PLAYER_SUCCEED:
                 {
                     return {
                         loading: false,
@@ -37,7 +39,7 @@ export default class PlayerSuggestionsStore extends ReduceStore {
                     };
                 }
 
-            case 'SEARCH_PLAYER_FAIL':
+            case actionTypes.SEARCH_PLAYER_FAIL:
                 {
                     console.log(`Failed to load suggestions with string ${action.part}, err: ${action.err}`);
                     return {
