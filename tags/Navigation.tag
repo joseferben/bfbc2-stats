@@ -1,7 +1,4 @@
-import Playerentry from './Playerentry.tag';
-import Spinner from './Spinner.tag';
-
-import action from '../src/actions/Actions';
+import Playerentry from './Playerentry.tag'; import Spinner from './Spinner.tag'; import action from '../src/actions/Actions';
 
 <Navigation>
     <nav class="fix-margin navbar navbar-inverse navbar-static-top">
@@ -18,13 +15,13 @@ import action from '../src/actions/Actions';
                         <input type="text" class="form-control" name="name" oninput={ handleSearchInput } placeholder="Search for player">
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
-                                <div class="dropdown dropdown-lg { opts.data.suggestions.length > 0 ? 'open': '' }">
-                                    <div if={ opts.data.loading }>
-                                        <Spinner></Spinner>
-                                    </div>
+                                <div class="dropdown dropdown-lg { opts.data.suggestions.length > 0 || opts.data.loading ? 'open': '' }">
                                     <div class="player-suggestions dropdown-menu dropdown-menu-right" role="menu">
                                         <ul class="player-list">
-                                            <Playerentry each={  opts.data.suggestions }></Playerentry>
+                                            <div if={ opts.data.loading }>
+                                                <Spinner></Spinner>
+                                            </div>
+                                            <Playerentry each={ opts.data.suggestions }></Playerentry>
                                         </ul>
                                     </div>
                                 </div>
