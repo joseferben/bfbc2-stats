@@ -1,14 +1,10 @@
 const mysql = require('mysql');
+const credentials = require('./DbCredentials.js');
 
 module.exports = class DbController {
 
     constructor() {
-        this.conn = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'pass',
-            database: 'b3_ea',
-        });
+        this.conn = mysql.createConnection(credentials);
     }
 
     connect() {

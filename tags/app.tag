@@ -21,7 +21,11 @@ import actions from '../src/actions/Actions';
     </footer>
     <script>
         this.suggestionStore = new PlayerSuggestionsStore();
+        this.suggestionData = this.suggestionStore.getState();
+
         this.playerStore = new PlayerStore();
+        this.weaponsData = this.playerStore.getState().weapons;
+        this.overallData = this.playerStore.getState().overall;
 
         this.suggestionStore.__emitter.addListener('change', () => {
             this.suggestionData = this.suggestionStore.getState();
@@ -29,7 +33,6 @@ import actions from '../src/actions/Actions';
         });
 
         this.playerStore.__emitter.addListener('change', () => {
-            console.log(this.playerStore);
             this.weaponsData = this.playerStore.getState().weapons;
             this.overallData = this.playerStore.getState().overall;
             riot.update();

@@ -48,6 +48,14 @@ export default class PlayerSuggestionsStore extends ReduceStore {
                     };
                 }
 
+            case actionTypes.LOAD_PLAYER_START:
+                {
+                    return {
+                        loading: state.loading,
+                        suggestions: []
+                    };
+                }
+
             default:
                 return state;
 
