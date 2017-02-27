@@ -3,7 +3,7 @@ import axios from 'axios';
 import actionTypes from './ActionTypes.js';
 import dispatcher from '../Dispatcher.js';
 
-const baseUrl = 'http://localhost:8080/api';
+const baseUrl = process.env.ON_HEROKU ? 'https://bfbc2.herokuapp.com/api' : 'http://localhost:8080/api';
 
 const Actions = {
     searchPlayer(part) {
