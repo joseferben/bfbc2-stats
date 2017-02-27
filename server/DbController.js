@@ -5,6 +5,7 @@ module.exports = class DbController {
 
     constructor() {
         this.conn = mysql.createConnection(credentials);
+      console.log(credentials);
     }
 
     connect() {
