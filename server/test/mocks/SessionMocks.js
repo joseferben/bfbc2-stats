@@ -30,9 +30,9 @@ module.exports = class SessionsMocks {
 
     static overallStats() {
         return {
-          kills:  8,
-          deaths: 2,
-          hs: 5,
+            kills: 8,
+            deaths: 2,
+            hs: 5,
             seconds: 18,
             score: 26,
             connections: 5,
