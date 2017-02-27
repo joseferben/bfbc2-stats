@@ -203,10 +203,13 @@ describe('StatsTest ', () => {
     describe('getOverallStats ', () => {
 
         it('should return empty object given empty array', () => {
-            const actual = sut.getOverallStats([]);
+          const actual = sut.getOverallStats([[], []], 1);
 
             expect(actual).to.be.an('object');
             expect(actual).to.eql({
+                kills: 0,
+                deaths: 0,
+                hs: 0,
                 connections: 0,
                 score: 0,
                 seconds: 0
@@ -214,7 +217,7 @@ describe('StatsTest ', () => {
         });
 
         it('should return overall stats for given an array of sessions', () => {
-            const actual = sut.getOverallStats(SessionMocks.sessions());
+            const actual = sut.getOverallStats([KillMocks.simpleKills().kills, SessionMocks.sessions()], 1);
             const expected = SessionMocks.overallStats();
 
             expect(actual).to.eql(expected);

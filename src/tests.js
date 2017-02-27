@@ -1,1 +1,1 @@
-import WeaponListStoreTest from './stores/test/WeaponListStoreTest';
+import PlayerStoreTest from './stores/test/PlayerStoreTest';
