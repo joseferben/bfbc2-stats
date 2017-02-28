@@ -7,7 +7,9 @@ module.exports = {
         path: path.join(__dirname, '/app'),
         filename: 'bundle.js',
     },
-
+    resolveLoader: {
+        root: path.join(__dirname, 'node_modules')
+    },
     devtool: 'source-map',
     devServer: {
         contentBase: './app',
