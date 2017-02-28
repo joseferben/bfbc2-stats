@@ -5,6 +5,7 @@ import dispatcher from '../Dispatcher.js';
 
 const baseUrl = process.env.NODE_ENV === 'production' ? 'https://bfbc2.herokuapp.com/api' : 'http://localhost:8080/api';
 
+console.log(process.env.NODE_ENV);
 const Actions = {
     searchPlayer(part) {
         dispatcher.dispatch({
