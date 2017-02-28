@@ -13,7 +13,7 @@
         "run-client-tests": "./node_modules/mocha/bin/mocha app/tests.js",
         "bundle-client-tests": "./node_modules/webpack/bin/webpack.js --config webpack.test.config.js ",
         "start-backend": "node ./server/server.js",
-        "start-client-dev": "./node_modules/.bin/webpack-dev-server --inline --hot --progress --colors"
+        "start-client-dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.config.js --inline --hot --progress --colors"
     },
     "repository": {
         "type": "git",
