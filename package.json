@@ -37,9 +37,7 @@
         "swagger-tools": "0.10.1",
         "webpack": "^1.13.3",
         "webpack-dev-middleware": "^1.8.4",
-        "webpack-hot-middleware": "^2.13.2"
-    },
-    "devDependencies": {
+      "webpack-hot-middleware": "^2.13.2",
         "babel": "^6.5.2",
         "babel-core": "^6.18.2",
         "babel-loader": "^6.2.7",
