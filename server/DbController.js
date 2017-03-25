@@ -46,4 +46,8 @@ module.exports = class DbController {
     getAllSessions(id) {
         return this._query(`SELECT * FROM sessions WHERE player_id = ${id}`);
     }
+
+    getName(id) {
+        return this._query(`SELECT name FROM clients WHERE id = ${id}`);
+    }
 };

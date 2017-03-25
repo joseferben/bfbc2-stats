@@ -126,6 +126,8 @@ definitions:
     properties:
       id:
         type: "string"
+      name:
+        type: "string"
       kills:
         type: "number"
       deaths:

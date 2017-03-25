@@ -35,6 +35,7 @@ import actions from '../src/actions/Actions';
         this.playerStore.__emitter.addListener('change', () => {
             this.weaponsData = this.playerStore.getState().weapons;
             this.overallData = this.playerStore.getState().overall;
+            console.log(this.playerStore.getState());
             riot.update();
         });
 

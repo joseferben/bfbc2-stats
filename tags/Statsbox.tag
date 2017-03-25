@@ -6,7 +6,7 @@ import Infobox from './Infobox.tag';
             <div class="row">
                 <div class="col-md-12">
                     <div class="player-name-box">
-                        <p class="player-name">opts.data.name</p>
+                        <p class="player-name">{ opts.data.name }</p>
                     </div>
                 </div>
             </div>

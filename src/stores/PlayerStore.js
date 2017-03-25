@@ -18,7 +18,7 @@ export default class PlayerStore extends ReduceStore {
         return {
             loading: false,
             overall: {},
-            weapons: []
+            weapons: [],
         };
     }
 
@@ -44,6 +44,7 @@ export default class PlayerStore extends ReduceStore {
                             seconds: action.data.seconds,
                             score: action.data.score,
                             connections: action.data.connections,
+                            name: action.data.name,
                         },
                         weapons: action.data.weapons,
                     };

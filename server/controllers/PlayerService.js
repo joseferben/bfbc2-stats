@@ -6,10 +6,13 @@ exports.getAllPlayerStats = (args, res, next) => {
     const controller = new DbController().connect();
     const kills = controller.getAllAffectingKills(playerId);
     const sessions = controller.getAllSessions(playerId);
+    const name = controller.getName(playerId);
 
-    Promise.all([kills, sessions]).then(arr => {
+
+    Promise.all([kills, sessions, name]).then(arr => {
         const player = Stats.getOverallStats(arr, playerId);
         player.weapons = Stats.getWeaponStats(arr[0], playerId);
+        player.name = arr[2][0].name;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(player));
         controller.disconnect();
