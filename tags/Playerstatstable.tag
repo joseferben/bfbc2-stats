@@ -11,7 +11,9 @@ import Weapon from './Weapon.tag';
                             <th>kills</th>
                             <th>deaths</th>
                             <th>hs</th>
-                        </tr>            
+                            <th>k/d</th>
+                            <th>hs/k</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr each={ weapon in opts.data } data-is="weapon"></tr>
@@ -22,4 +24,6 @@ import Weapon from './Weapon.tag';
             </div>
         </div>
     </div>
+        <script>
+    </script>
 </Playerstatstable>
