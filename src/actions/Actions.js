@@ -13,15 +13,22 @@ const Actions = {
             part,
         });
 
-        axios.get(`${baseUrl}/suggestions/${part}`)
-            .then(res => dispatcher.dispatch({
-                type: actionTypes.SEARCH_PLAYER_SUCCEED,
-                suggestions: res.data.suggestions,
-            }))
-            .catch(err => dispatcher.dispatch({
+        if (part.length > 3) {
+            axios.get(`${baseUrl}/suggestions/${part}`)
+                .then(res => dispatcher.dispatch({
+                    type: actionTypes.SEARCH_PLAYER_SUCCEED,
+                    suggestions: res.data.suggestions,
+                }))
+                .catch(err => dispatcher.dispatch({
+                    type: actionTypes.SEARCH_PLAYER_FAIL,
+                    err: err,
+                }));
+        } else {
+            dispatcher.dispatch({
                 type: actionTypes.SEARCH_PLAYER_FAIL,
-                err: err,
-            }));
+                err: 'Player name too short!',
+            });
+        }
     },
 
     loadPlayer(id) {

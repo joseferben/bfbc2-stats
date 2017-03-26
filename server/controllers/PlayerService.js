@@ -18,15 +18,25 @@ exports.getAllPlayerStats = (args, res, next) => {
 
 exports.getSuggestions = (args, res, next) => {
     const part = args.part.value;
-    controller.getMatchingPlayerNames(part).then(val => {
-        const suggestions = {
-            suggestions: val
-                .filter(cur => cur.name.includes(part))
-                .reduce((a, b) => {
-                    return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
-                }, [])
+    res.setHeader('Content-Type', 'application/json');
+
+    if (part.length < 4) {
+        const response = {
+            message: 'Player name too short',
         };
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(suggestions));
-    });
+
+        res.end(JSON.stringify(response));
+    } else {
+        controller.getMatchingPlayerNames().then(val => {
+            const suggestions = {
+                suggestions: val
+                    .filter(cur => cur.name.includes(part))
+                    .reduce((a, b) => {
+                        return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
+                    }, [])
+            };
+
+            res.end(JSON.stringify(suggestions));
+        });
+    }
 };

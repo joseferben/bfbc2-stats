@@ -1,4 +1,6 @@
-import Playerentry from './Playerentry.tag'; import Spinner from './Spinner.tag'; import action from '../src/actions/Actions';
+import Playerentry from './Playerentry.tag';
+import Spinner from './Spinner.tag';
+import action from '../src/actions/Actions';
 
 <Navigation>
     <nav class="fix-margin navbar navbar-inverse navbar-static-top">
