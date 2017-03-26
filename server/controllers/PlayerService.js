@@ -1,13 +1,11 @@
-const DbController = require('../DbController.js');
+const controller = require('../DbController.js');
 const Stats = require('../Stats.js');
 
 exports.getAllPlayerStats = (args, res, next) => {
     const playerId = parseInt(args.id.value);
-    const controller = new DbController().connect();
     const kills = controller.getAllAffectingKills(playerId);
     const sessions = controller.getAllSessions(playerId);
     const name = controller.getName(playerId);
-
 
     Promise.all([kills, sessions, name]).then(arr => {
         const player = Stats.getOverallStats(arr, playerId);
@@ -21,7 +19,6 @@ exports.getAllPlayerStats = (args, res, next) => {
 
 exports.getSuggestions = (args, res, next) => {
     const part = args.part.value;
-    const controller = new DbController().connect();
 
     controller.getMatchingPlayerNames(part).then(val => {
         const suggestions = {

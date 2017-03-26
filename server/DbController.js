@@ -1,10 +1,12 @@
 const mysql = require('mysql');
 const credentials = require('./DbCredentials.js');
+const UPDATE_INTERVAL = 10000;
 
-module.exports = class DbController {
+class DbController {
 
     constructor() {
         this.conn = mysql.createConnection(credentials);
+        this.players = -1;
     }
 
     connect() {
@@ -32,11 +34,20 @@ module.exports = class DbController {
     }
 
     getMatchingPlayerNames(name) {
-        return this._query(`SELECT * 
-                            FROM
-                                (SELECT name, id FROM clients UNION ALL SELECT alias, client_id FROM aliases) AS namesAndIds
-                                WHERE namesAndIds.name LIKE \'%${name}%\'
-                                LIMIT 20;`);
+        // Make sure register job on event loop only once
+        if (this.players === -1) {
+            this._updatePlayerNames();
+            setInterval(() => this._updatePlayerNames(), UPDATE_INTERVAL);
+        }
+        return this.players;
+    }
+
+    _updatePlayerNames() {
+        this.players = this._queryAllPlayerNames();
+    }
+
+    _queryAllPlayerNames() {
+        return this._query(`SELECT name, id FROM clients`);
     }
 
     getAllAffectingKills(id) {
@@ -51,3 +62,6 @@ module.exports = class DbController {
         return this._query(`SELECT name FROM clients WHERE id = ${id}`);
     }
 };
+
+const controller = new DbController().connect();
+module.exports = controller;

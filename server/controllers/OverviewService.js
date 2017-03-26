@@ -1,4 +1,4 @@
-const DbController = require('../DbController');
+const controller = require('../DbController.js');
 
 exports.getOverview = (args, res, next) => {
     /**
@@ -6,7 +6,6 @@ exports.getOverview = (args, res, next) => {
      *
      * returns Overview
      **/
-    const controller = new DbController().connect();
 
     res.setHeader('Content-Type', 'application/json');
     controller.getKills()
