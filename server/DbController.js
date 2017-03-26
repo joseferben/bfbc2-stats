@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const credentials = require('./DbCredentials.js');
-const UPDATE_INTERVAL = 60000;
+const UPDATE_INTERVAL = 600000;
 
 class DbController {
 
