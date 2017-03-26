@@ -43,9 +43,11 @@ class DbController {
 
     _updatePlayerNames() {
         this.players = this._queryAllPlayerNames();
+        console.log('updating player names');
     }
 
     _queryAllPlayerNames() {
+      console.log('query');
         return this._query(`SELECT name, id FROM clients`);
     }
 

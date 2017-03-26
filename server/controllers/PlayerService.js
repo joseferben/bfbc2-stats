@@ -13,13 +13,11 @@ exports.getAllPlayerStats = (args, res, next) => {
         player.name = arr[2][0].name;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(player));
-        controller.disconnect();
     });
 };
 
 exports.getSuggestions = (args, res, next) => {
     const part = args.part.value;
-  
     controller.getMatchingPlayerNames(part).then(val => {
         const suggestions = {
             suggestions: val
