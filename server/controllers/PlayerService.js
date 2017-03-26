@@ -19,7 +19,7 @@ exports.getAllPlayerStats = (args, res, next) => {
 
 exports.getSuggestions = (args, res, next) => {
     const part = args.part.value;
-
+  
     controller.getMatchingPlayerNames(part).then(val => {
         const suggestions = {
             suggestions: val
