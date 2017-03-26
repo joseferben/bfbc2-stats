@@ -1,4 +1,5 @@
 import ImageMapper from '../src/ImageMapper.js';
+
 <WeaponImage>
     <div class="weapon-icon">
         <img src="{ imageUrl }"></img>
