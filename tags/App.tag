@@ -25,7 +25,7 @@ import actions from '../src/actions/Actions';
     </footer>
     <script>
         route.stop();
-        route.start();
+        route.start(true);
 
         this.loading = false;
         this.suggestionStore = new PlayerSuggestionsStore();
