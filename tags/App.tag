@@ -1,3 +1,4 @@
+import route from 'riot-route';
 import Navigation from './Navigation.tag';
 import Statsbox from './Statsbox.tag';
 import Playerstatstable from './Playerstatstable.tag';
@@ -23,6 +24,9 @@ import actions from '../src/actions/Actions';
         </div>
     </footer>
     <script>
+        route.stop();
+        route.start();
+
         this.loading = false;
         this.suggestionStore = new PlayerSuggestionsStore();
         this.suggestionData = this.suggestionStore.getState();
@@ -33,14 +37,20 @@ import actions from '../src/actions/Actions';
 
         this.suggestionStore.__emitter.addListener('change', () => {
             this.suggestionData = this.suggestionStore.getState();
-            riot.update();
+            this.update();
         });
 
         this.playerStore.__emitter.addListener('change', () => {
             this.loading = this.playerStore.getState().loading;
             this.weaponsData = this.playerStore.getState().weapons;
             this.overallData = this.playerStore.getState().overall;
-            riot.update();
+            this.update();
         });
+     
+        route('/players/*', (id) => {
+            console.log(`url changed to id: ${id}`);
+            actions.loadPlayer(id);
+        });
+
     </script>
 </App>

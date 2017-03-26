@@ -24,6 +24,6 @@ import Weapon from './Weapon.tag';
             </div>
         </div>
     </div>
-        <script>
+    <script>
     </script>
 </Playerstatstable>

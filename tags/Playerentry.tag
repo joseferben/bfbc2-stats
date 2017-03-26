@@ -1,10 +1,12 @@
 import action from '../src/actions/Actions';
+import route from 'riot-route';
 
 <Playerentry>
-    <li><span><a onclick={ loadPlayer } href="#">{ name }</a></span></li>
+    <li><span><a onclick={ loadPlayer } href="/#players/{ id }">{ name }</a></span></li>
     <script>
         this.loadPlayer = (evt) => {
-            action.loadPlayer(evt.item.id);
+            route(`players/${evt.item.id}`);
         };
+     console.log(this);
     </script>
 </Playerentry>

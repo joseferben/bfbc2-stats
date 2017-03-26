@@ -51,6 +51,6 @@ const Actions = {
     loadGeneral() {
         //TODO(implement);
     },
-}
+};
 
 export default Actions;

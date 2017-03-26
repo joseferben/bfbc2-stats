@@ -16,7 +16,6 @@ import { round10 } from 'round10';
             return round10(dividend / divisor === Infinity || NaN ? 0 : dividend / divisor, tol);
         };
 
-        console.log('adasd');
         this.kd = this._calculateRatio(data.kills, data.deaths, -1);
         this.hsk = this._calculateRatio(data.hs, data.kills, -1);
     </script>
