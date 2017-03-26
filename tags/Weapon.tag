@@ -1,7 +1,6 @@
 import { round10 } from 'round10';
 
 import WeaponImage from './WeaponImage.tag';
-
 <Weapon>
     <th scope="row"><WeaponImage label= { weapon.label }></WeaponImage></th>
     <td>{ weapon.kills }</td>

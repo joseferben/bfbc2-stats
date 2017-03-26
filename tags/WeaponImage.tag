@@ -1,7 +1,13 @@
-import image from '../images/weapons/40mmgl.png';
-
+import ImageMapper from '../src/ImageMapper.js';
 <WeaponImage>
-    <img src="{ image }"></img>
+    <div class="weapon-icon">
+        <img src="{ imageUrl }"></img>
+    </div>
     <script>
+        this._getImageUrl = (label) => {
+            const fileName = ImageMapper.mapToFileName(label);
+            return require(`file-loader!../images/weapons/${fileName}.png`);
+        }
+        this.imageUrl = this._getImageUrl(opts.label)
     </script>
 </WeaponImage>

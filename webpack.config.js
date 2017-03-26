@@ -56,12 +56,6 @@ module.exports = {
             test: /\.html$/,
             loader: 'raw-loader',
         }, {
-            test: /\.png$/,
-            loader: 'url-loader?limit=1000000',
-        }, {
-            test: /\.jpg$/,
-            loader: 'file-loader',
-        }, {
             test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
             loader: 'url?limit=10000&mimetype=application/font-woff',
         }, {
