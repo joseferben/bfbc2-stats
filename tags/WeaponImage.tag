@@ -1,4 +1,4 @@
-import image from '../app/images/weapons/40mmgl.png';
+import image from '../images/weapons/40mmgl.png';
 
 <WeaponImage>
     <img src="{ image }"></img>
