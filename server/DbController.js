@@ -31,9 +31,12 @@ class DbController {
         });
     }
 
-    // TODO merge query results
+    _queryAll(sql) {
+        return this.connections.getConnections().map(cur => this._query(cur, sql));
+    }
+
     getKills() {
-        return this._query(this.conn, `SELECT COUNT(*) AS kills from kills`);
+        return this._queryAll(`SELECT COUNT(*) AS kills from kills`);
     }
 
     getMatchingPlayerNames(name) {
@@ -49,9 +52,8 @@ class DbController {
         this.players = this._queryAllPlayerNames();
     }
 
-    // TODO merge all query resulst
     _queryAllPlayerNames() {
-        return this._query(this.conn, `SELECT name, id FROM clients`);
+        return this._queryAll(`SELECT name, id FROM clients`);
     }
 
     getAllAffectingKills(id) {

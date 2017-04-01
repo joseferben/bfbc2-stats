@@ -27,16 +27,31 @@ exports.getSuggestions = (args, res, next) => {
 
         res.end(JSON.stringify(response));
     } else {
-        controller.getMatchingPlayerNames().then(val => {
-            const suggestions = {
-                suggestions: val
-                    .filter(cur => cur.name.includes(part))
-                    .reduce((a, b) => {
-                        return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
-                    }, [])
-            };
+        const suggestions = [];
 
-            res.end(JSON.stringify(suggestions));
-        });
+        Promise.all(controller.getMatchingPlayerNames())
+            .then(arr => {
+
+                arr.forEach((val, idx) => {
+                    suggestions.push({
+                        suggestions: val
+                            .filter(cur => cur.name.includes(part))
+                            .reduce((a, b) => {
+                                return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
+                            }, [])
+                    });
+                });
+
+                res.end(JSON.stringify({
+                    suggestions
+                }));
+            })
+            .catch(err => {
+                console.log(`Could not get matching players: ${err}`);
+                res.end(JSON.stringify({
+                    response: 'Could not get player suggestions'
+                }));
+            });
+
     }
 };
