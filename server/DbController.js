@@ -1,35 +1,39 @@
 const mysql = require('mysql');
+
 const credentials = require('./DbCredentials.js');
+const Connections = require('./Connections.js');
+
 const UPDATE_INTERVAL = 600000;
 
 class DbController {
 
     constructor() {
-        this.conn = mysql.createConnection(credentials);
+        this.connections = new Connections();
         this.players = -1;
     }
 
     connect() {
-        this.conn.connect();
+        this.connections.connectAll();
         return this;
     }
 
     disconnect() {
-        this.conn.end();
+        this.connections.disconnectAll();
         return this;
     }
 
-    _query(sql) {
+    _query(conn, sql) {
         return new Promise((resolve, reject) => {
-            this.conn.query(sql, (err, res, fields) => {
+            conn.query(sql, (err, res, fields) => {
                 if (err) reject(`Could not run query ${sql}, `, err);
                 resolve(res);
             });
         });
     }
 
+    // TODO merge query results
     getKills() {
-        return this._query(`SELECT COUNT(*) AS kills from kills`);
+        return this._query(this.conn, `SELECT COUNT(*) AS kills from kills`);
     }
 
     getMatchingPlayerNames(name) {
@@ -45,20 +49,21 @@ class DbController {
         this.players = this._queryAllPlayerNames();
     }
 
+    // TODO merge all query resulst
     _queryAllPlayerNames() {
-        return this._query(`SELECT name, id FROM clients`);
+        return this._query(this.conn, `SELECT name, id FROM clients`);
     }
 
     getAllAffectingKills(id) {
-        return this._query(`SELECT * FROM kills WHERE killer_id = ${mysql.escape(id)} OR victim_id = ${id}`);
+        return this._query(this.connections.getConnection(id), `SELECT * FROM kills WHERE killer_id = ${mysql.escape(id)} OR victim_id = ${id}`);
     }
 
     getAllSessions(id) {
-        return this._query(`SELECT * FROM sessions WHERE player_id = ${mysql.escape(id)}`);
+        return this._query(this.connections.getConnection(id), `SELECT * FROM sessions WHERE player_id = ${mysql.escape(id)}`);
     }
 
     getName(id) {
-        return this._query(`SELECT name FROM clients WHERE id = ${mysql.escape(id)}`);
+        return this._query(this.connections.getConnection(id), `SELECT name FROM clients WHERE id = ${mysql.escape(id)}`);
     }
 };
 
