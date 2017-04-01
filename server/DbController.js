@@ -50,15 +50,15 @@ class DbController {
     }
 
     getAllAffectingKills(id) {
-        return this._query(`SELECT * FROM kills WHERE killer_id = ${id} OR victim_id = ${id}`);
+        return this._query(`SELECT * FROM kills WHERE killer_id = ${mysql.escape(id)} OR victim_id = ${id}`);
     }
 
     getAllSessions(id) {
-        return this._query(`SELECT * FROM sessions WHERE player_id = ${id}`);
+        return this._query(`SELECT * FROM sessions WHERE player_id = ${mysql.escape(id)}`);
     }
 
     getName(id) {
-        return this._query(`SELECT name FROM clients WHERE id = ${id}`);
+        return this._query(`SELECT name FROM clients WHERE id = ${mysql.escape(id)}`);
     }
 };
 
