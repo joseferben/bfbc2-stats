@@ -2,7 +2,10 @@ import Infobox from './Infobox.tag';
 
 <Statsbox>
     <div class="jumbotron">
-        <div class="container">
+        <div if={opts.data.name == null} class="container">
+            <h2>Display some global server stats</h2>
+        </div>
+        <div if={opts.data.name != null} class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="player-name-box">
@@ -11,7 +14,7 @@ import Infobox from './Infobox.tag';
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div if={opts.data.score != null} class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
                     <Infobox label="total score" value="{ opts.data.score }"></Infobox>
@@ -37,5 +40,6 @@ import Infobox from './Infobox.tag';
         </div>
     </div>
     <script>
+        console.log(opts);
     </script>
 </Statsbox>

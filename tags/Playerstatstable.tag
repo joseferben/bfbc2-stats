@@ -1,7 +1,7 @@
 import Weapon from './Weapon.tag';
 
 <Playerstatstable>
-    <div class="container">
+    <div if={opts.data.length > 0} class="container">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-hover">
