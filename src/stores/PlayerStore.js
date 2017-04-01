@@ -86,7 +86,11 @@ export default class PlayerStore extends ReduceStore {
 
     static getCalculatedValue(weapon, key) {
         const secondVal = weapon[this.stripSecondKey(key)];
-        return secondVal === 0 ? 0 : weapon[this.stripFirstKey(key)] / secondVal;
+        const firstVal = weapon[this.stripFirstKey(key)];
+        if (firstVal === 0 && secondVal === 0) {
+            return -1;
+        }
+        return secondVal === 0 ? firstVal : firstVal / secondVal;
     }
 
     static stripFirstKey(key) {
