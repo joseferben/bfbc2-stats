@@ -11,6 +11,63 @@ describe('PlayerStore', () => {
         sut = new PlayerStore();
     });
 
+    it('should calculate complex weapon stat given weapon and key', () => {
+        expect(PlayerStore.getCalculatedValue({
+            some: 5,
+            thing: 9
+        }, 'some-thing')).to.be(5 / 9);
+    });
+
+    it('should return whatever given string whatever-something', () => {
+        expect(PlayerStore.stripFirstKey('whatever-something')).to.be('whatever');
+    });
+
+    it('should return something given string whatever-something', () => {
+        expect(PlayerStore.stripSecondKey('whatever-something')).to.be('something');
+    });
+
+    it('should sort weapon list by calculated value given complex key', () => {
+        const state = {
+            loading: false,
+            overall: {},
+            weapons: [{
+                deaths: 1,
+                kills: 10
+            }, {
+                deaths: 1,
+                kills: 1
+            }, {
+                deaths: 1,
+                kills: 2
+            }, ]
+        };
+
+        const action = {
+            type: actionTypes.SORT_WEAPON_STATS,
+            key: 'kills-deaths',
+        };
+
+        const expected = {
+            loading: false,
+            overall: {},
+            weapons: [{
+                deaths: 1,
+                kills: 10
+            }, {
+                deaths: 1,
+                kills: 2
+            }, {
+                deaths: 1,
+                kills: 1
+            }, ]
+        };
+
+        const actual = sut.reduce(state, action);
+        expect(actual).to.eql(expected);
+    });
+
+
+
     it('should sort weapon list by key given key', () => {
         const state = {
             loading: false,
@@ -28,22 +85,22 @@ describe('PlayerStore', () => {
         };
 
         const action = {
-          type: actionTypes.SORT_WEAPON_STATS,
-          key: 'kills',
+            type: actionTypes.SORT_WEAPON_STATS,
+            key: 'kills',
         };
 
         const expected = {
             loading: false,
             overall: {},
             weapons: [{
-                label: 'test2',
-                kills: 1
+                label: 'test1',
+                kills: 10
             }, {
                 label: 'test3',
                 kills: 2
             }, {
-                label: 'test1',
-                kills: 10
+                label: 'test2',
+                kills: 1
             }, ]
         };
 

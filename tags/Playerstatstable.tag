@@ -8,12 +8,12 @@ import actions from '../src/actions/Actions';
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th><span onclick={ sortTable }>weapon<span></th>
-                            <th><span onclick={ sortTable }>kills<span></th>
-                            <th><span onclick={ sortTable }>deaths<span></th>
-                            <th><span onclick={ sortTable }>hs<span></th>
-                            <th><span onclick={ sortTable }>kd<span>k/d</th>
-                            <th><span onclick={ sortTable }>hsk<span></th>
+                            <th><span onclick={ sortTable } value="label">weapon<span></th>
+                            <th><span onclick={ sortTable } value="kills">kills<span></th>
+                            <th><span onclick={ sortTable } value="deaths">deaths<span></th>
+                            <th><span onclick={ sortTable } value="hs">hs<span></th>
+                            <th><span onclick={ sortTable } value="kills-deaths">kd<span></th>
+                            <th><span onclick={ sortTable } value="hs-kills">hs/k<span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,7 +27,7 @@ import actions from '../src/actions/Actions';
     </div>
     <script>
      this.sortTable = function(evt) {
-         actions.sortWeaponStats(evt.srcElement.textContent);
+         actions.sortWeaponStats(evt.srcElement.attributes[0].value);
      }
     </script>
 </Playerstatstable>

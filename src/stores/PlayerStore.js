@@ -9,6 +9,8 @@ import {
 import actionTypes from '../actions/ActionTypes';
 import dispatcher from '../Dispatcher';
 
+const SEPARATING_CHAR = '-';
+
 export default class PlayerStore extends ReduceStore {
     constructor() {
         super(dispatcher);
@@ -29,7 +31,7 @@ export default class PlayerStore extends ReduceStore {
                     return {
                         loading: state.loading,
                         overall: state.overall,
-                        weapons: state.weapons.sort((a, b) => b[action.key] - a[action.key]),
+                        weapons: this.sortWeaponStats(state.weapons, action.key)
                     };
                 }
 
@@ -72,5 +74,26 @@ export default class PlayerStore extends ReduceStore {
             default:
                 return state;
         }
+    }
+
+    sortWeaponStats(weapons, key) {
+        if (weapons[0][key] != null) {
+            return weapons.sort((a, b) => b[key] - a[key]);
+        } else {
+            return weapons.sort((a, b) => PlayerStore.getCalculatedValue(b, key) - PlayerStore.getCalculatedValue(a, key));
+        }
+    }
+
+    static getCalculatedValue(weapon, key) {
+        const secondVal = weapon[this.stripSecondKey(key)];
+        return secondVal === 0 ? 0 : weapon[this.stripFirstKey(key)] / secondVal;
+    }
+
+    static stripFirstKey(key) {
+        return key.substring(0, [key.indexOf(SEPARATING_CHAR)]);
+    }
+
+    static stripSecondKey(key) {
+        return key.substring(key.indexOf(SEPARATING_CHAR) + 1, key.length);
     }
 }
