@@ -11,6 +11,46 @@ describe('PlayerStore', () => {
         sut = new PlayerStore();
     });
 
+    it('should sort weapon list by key given key', () => {
+        const state = {
+            loading: false,
+            overall: {},
+            weapons: [{
+                label: 'test1',
+                kills: 10
+            }, {
+                label: 'test2',
+                kills: 1
+            }, {
+                label: 'test3',
+                kills: 2
+            }, ]
+        };
+
+        const action = {
+          type: actionTypes.SORT_WEAPON_STATS,
+          key: 'kills',
+        };
+
+        const expected = {
+            loading: false,
+            overall: {},
+            weapons: [{
+                label: 'test2',
+                kills: 1
+            }, {
+                label: 'test3',
+                kills: 2
+            }, {
+                label: 'test1',
+                kills: 10
+            }, ]
+        };
+
+        const actual = sut.reduce(state, action);
+        expect(actual).to.eql(expected);
+    });
+
     it('should be loading weapon list given LOAD_PLAYER_START and initial state', () => {
         const state = {
             loading: false,

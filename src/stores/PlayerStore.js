@@ -24,6 +24,15 @@ export default class PlayerStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
+            case actionTypes.SORT_WEAPON_STATS:
+                {
+                    return {
+                        loading: state.loading,
+                        overall: state.overall,
+                        weapons: state.weapons.sort((a, b) => b[action.key] - a[action.key]),
+                    };
+                }
+
             case actionTypes.LOAD_PLAYER_START:
                 {
                     return {

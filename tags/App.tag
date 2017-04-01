@@ -10,16 +10,13 @@ import actions from '../src/actions/Actions';
 
 <App>
     <Navigation data={ this.suggestionData }></Navigation>
-    <Statsbox data={ this.overallData }></Statsbox>
+    <Statsbox loading={ this.loading } data={ this.overallData }></Statsbox>
     <Playerstatstable data={ this.weaponsData }></Playerstatstable>
-    <div if={ this.loading }>
-        <Spinner></Spinner>
-    </div>
-
+    
     <footer class="footer">
         <div class="container">
             <span>
-          by <a href="http://www.du4-gaming.com">DU4</a>
+ by <a href="http://www.du4-gaming.com">DU4</a>
           </span>
         </div>
     </footer>

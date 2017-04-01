@@ -1,8 +1,12 @@
 import Infobox from './Infobox.tag';
+import Spinner from './Spinner.tag';
 
 <Statsbox>
     <div class="jumbotron">
-        <div if={opts.data.name == null} class="container">
+        <div if={ opts.loading }>
+            <Spinner></Spinner>
+        </div>
+        <div if={opts.data.name == null && opts.loading == false} class="container">
             <h2>Display some global server stats</h2>
         </div>
         <div if={opts.data.name != null} class="container">

@@ -7,6 +7,14 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'https://bfbc2.herokuapp
 
 console.log(process.env.NODE_ENV);
 const Actions = {
+
+    sortWeaponStats(key) {
+      dispatcher.dispatch({
+        type: actionTypes.SORT_WEAPON_STATS,
+        key,
+      });
+    },
+
     searchPlayer(part) {
         dispatcher.dispatch({
             type: actionTypes.SEARCH_PLAYER_START,
