@@ -6,11 +6,12 @@ import FakeResponsePlayer from '../fake-response-player.json';
 import FakeSuggestion from '../fake-suggestions.json';
 import PlayerSuggestionsStore from '../src/stores/PlayerSuggestionsStore';
 import PlayerStore from '../src/stores/PlayerStore';
+import OverviewStore from '../src/stores/OverviewStore';
 import actions from '../src/actions/Actions';
 
 <App>
     <Navigation data={ this.suggestionData }></Navigation>
-    <Statsbox loading={ this.loading } data={ this.overallData }></Statsbox>
+    <Statsbox loading={ this.loading } data={ this.overallData } overview={ this.overviewData }></Statsbox>
     <Playerstatstable data={ this.weaponsData }></Playerstatstable>
     
     <footer class="footer">
@@ -28,9 +29,18 @@ import actions from '../src/actions/Actions';
         this.suggestionStore = new PlayerSuggestionsStore();
         this.suggestionData = this.suggestionStore.getState();
 
+        this.overviewStore = new OverviewStore();
+        this.overviewData = this.overviewStore.getState();
+
         this.playerStore = new PlayerStore();
         this.weaponsData = this.playerStore.getState().weapons;
         this.overallData = this.playerStore.getState().overall;
+
+        this.overviewStore.__emitter.addListener('change', () => {
+            this.loading = this.overviewStore.loading;
+            this.overviewData = this.overviewStore.getState();
+            this.update();
+        });
 
         this.suggestionStore.__emitter.addListener('change', () => {
             this.suggestionData = this.suggestionStore.getState();
@@ -44,8 +54,11 @@ import actions from '../src/actions/Actions';
             this.update();
         });
      
+        route('/', () => {
+            actions.loadOverview();
+        });
+
         route('/players/*', (id) => {
-            console.log(`url changed to id: ${id}`);
             actions.loadPlayer(id);
         });
 

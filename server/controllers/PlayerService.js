@@ -15,7 +15,14 @@ exports.getAllPlayerStats = (args, res, next) => {
         player.name = arr[2][0].name;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(player));
+    })
+    .catch(err => {
+      console.log(`Could not get player stats: ${err}`);
+      res.end(JSON.stringify({
+        response: 'Could not get player stats'
+      }));
     });
+;
 };
 
 exports.getSuggestions = (args, res, next) => {

@@ -1,13 +1,14 @@
 import Infobox from './Infobox.tag';
+import GlobalStats from './GlobalStats.tag';
 import Spinner from './Spinner.tag';
 
 <Statsbox>
     <div class="jumbotron">
-        <div if={ opts.loading }>
+        <div if={ opts.loading || opts.overview.loading}>
             <Spinner></Spinner>
         </div>
         <div if={opts.data.name == null && opts.loading == false} class="container">
-            <h2>Display some global server stats</h2>
+            <GlobalStats data={ opts.overview.overview }></GlobalStats>
         </div>
         <div if={opts.data.name != null} class="container">
             <div class="row">
@@ -44,6 +45,5 @@ import Spinner from './Spinner.tag';
         </div>
     </div>
     <script>
-        console.log(opts);
     </script>
 </Statsbox>

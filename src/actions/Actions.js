@@ -9,10 +9,10 @@ console.log(process.env.NODE_ENV);
 const Actions = {
 
     sortWeaponStats(key) {
-      dispatcher.dispatch({
-        type: actionTypes.SORT_WEAPON_STATS,
-        key,
-      });
+        dispatcher.dispatch({
+            type: actionTypes.SORT_WEAPON_STATS,
+            key,
+        });
     },
 
     searchPlayer(part) {
@@ -56,8 +56,20 @@ const Actions = {
             }));
     },
 
-    loadGeneral() {
-        //TODO(implement);
+    loadOverview() {
+        dispatcher.dispatch({
+            type: actionTypes.LOAD_OVERVIEW_START
+        });
+
+      axios.get(`${baseUrl}/overview`)
+        .then(res => dispatcher.dispatch({
+          type: actionTypes.LOAD_OVERVIEW_SUCCEED,
+          data: res.data,
+        }))
+        .catch(err => dispatcher.dispatch({
+          type: actionTypes.LOAD_OVERVIEW_FAIL,
+          err: err
+        }));
     },
 };
 
