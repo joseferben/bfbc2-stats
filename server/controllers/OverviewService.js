@@ -12,6 +12,7 @@ exports.getOverview = (args, res, next) => {
             .concat(controller.getPlayerAmount())
             .concat(controller.getHeadshotAmount()))
         .then(arr => {
+          // TODO remove hard coded number of databases
             const response = {
                 kills: arr.slice(0, 3).reduce((a, b) => a + b[0].kills, 0),
                 players: arr.slice(3, 6).reduce((a, b) => a + b[0].players, 0),
