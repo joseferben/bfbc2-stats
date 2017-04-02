@@ -28,7 +28,17 @@ module.exports = class Connections {
         return this.connections;
     }
 
-    getConnection(id) {
-        return this.connections[id];
+    getConnection(playerId) {
+        return this.connections[Connections._stripServerId(playerId)];
     }
-}
+
+    static _stripServerId(playerId) {
+        const id = playerId.toString();
+        return id.substring(id.indexOf('-') + 1, id.length);
+    }
+
+  static _stripPlayerId(playerId) {
+    const id = playerId.toString();
+    return id.substring(0, id.indexOf('-'));
+  }
+};

@@ -1,11 +1,14 @@
 const controller = require('../DbController.js');
 const Stats = require('../Stats.js');
+const Connections = require('../Connections.js');
 
 exports.getAllPlayerStats = (args, res, next) => {
-    const playerId = parseInt(args.id.value);
-    const kills = controller.getAllAffectingKills(playerId);
-    const sessions = controller.getAllSessions(playerId);
-    const name = controller.getName(playerId);
+    const fullPlayerId = args.id.value;
+    const playerId = parseInt(Connections._stripPlayerId(args.id.value));
+
+    const kills = controller.getAllAffectingKills(fullPlayerId);
+    const sessions = controller.getAllSessions(fullPlayerId);
+    const name = controller.getName(fullPlayerId);
 
     Promise.all([kills, sessions, name]).then(arr => {
         const player = Stats.getOverallStats(arr, playerId);
@@ -20,6 +23,15 @@ exports.getSuggestions = (args, res, next) => {
     const part = args.part.value;
     res.setHeader('Content-Type', 'application/json');
 
+    const appendServerId = function(suggestions, serverId) {
+        return suggestions.map(cur => {
+            return {
+                name: cur.name,
+                id: `${cur.id}-${serverId}`,
+            };
+        });
+    };
+
     if (part.length < 4) {
         const response = {
             message: 'Player name too short',
@@ -31,15 +43,12 @@ exports.getSuggestions = (args, res, next) => {
 
         Promise.all(controller.getMatchingPlayerNames())
             .then(arr => {
-
                 arr.forEach((val, idx) => {
-                    suggestions.push({
-                        suggestions: val
-                            .filter(cur => cur.name.includes(part))
-                            .reduce((a, b) => {
-                                return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
-                            }, [])
-                    });
+                    suggestions.push(...appendServerId(val
+                        .filter(cur => cur.name.includes(part))
+                        .reduce((a, b) => {
+                            return a.filter(cur => cur.name === b.name && cur.id === b.id).length === 0 ? a.concat(b) : a;
+                        }, []), idx));
                 });
 
                 res.end(JSON.stringify({
