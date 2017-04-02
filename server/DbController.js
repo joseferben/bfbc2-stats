@@ -39,6 +39,15 @@ class DbController {
         return this._queryAll(`SELECT COUNT(*) AS kills from kills`);
     }
 
+    getPlayerAmount() {
+        return this._queryAll(`SELECT COUNT(*) AS players from clients`);
+    }
+
+    getHeadshotAmount() {
+        return this._queryAll(`SELECT COUNT(*) AS kills from kills WHERE hit_loc = 'head'`);
+    }
+
+
     getMatchingPlayerNames(name) {
         // Make sure register job on event loop only once
         if (this.players === -1) {

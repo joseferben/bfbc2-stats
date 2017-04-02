@@ -120,8 +120,6 @@ definitions:
     properties:
       kills:
         type: "number"
-      time:
-        type: "number"
       players:
         type: "number"
       hs:
