@@ -74,4 +74,9 @@ module.exports = class Stats {
         const id = playerId.toString();
         return id.substring(0, id.indexOf('-'));
     }
+
+  static getServers() {
+    return ['EA', 'Nexus', 'DU4'];
+  }
+
 }

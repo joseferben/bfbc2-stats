@@ -203,7 +203,10 @@ describe('StatsTest ', () => {
     describe('getOverallStats ', () => {
 
         it('should return empty object given empty array', () => {
-          const actual = sut.getOverallStats([[], []], 1);
+            const actual = sut.getOverallStats([
+                [],
+                []
+            ], 1);
 
             expect(actual).to.be.an('object');
             expect(actual).to.eql({
@@ -276,6 +279,16 @@ describe('StatsTest ', () => {
             expect(actual).to.eql(26);
         });
 
+    });
+
+    describe('Utils', () => {
+        it('should return 42 given whatever42-42', () => {
+            expect(Stats._stripServerId('whatever42-42')).to.be('42');
+        });
+
+        it('should return whatever42 given whatever42-42', () => {
+            expect(Stats._stripPlayerId('whatever42-42')).to.be('whatever42');
+        });
     });
 
 });
