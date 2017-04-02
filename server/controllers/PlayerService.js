@@ -1,10 +1,9 @@
 const controller = require('../DbController.js');
 const Stats = require('../Stats.js');
-const Connections = require('../Connections.js');
 
 exports.getAllPlayerStats = (args, res, next) => {
     const fullPlayerId = args.id.value;
-    const playerId = parseInt(Connections._stripPlayerId(args.id.value));
+    const playerId = parseInt(Stats._stripPlayerId(args.id.value));
 
     const kills = controller.getAllAffectingKills(fullPlayerId);
     const sessions = controller.getAllSessions(fullPlayerId);

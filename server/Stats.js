@@ -64,4 +64,14 @@ module.exports = class Stats {
             return a + b.score;
         }, 0);
     }
+
+    static _stripServerId(playerId) {
+        const id = playerId.toString();
+        return id.substring(id.indexOf('-') + 1, id.length);
+    }
+
+    static _stripPlayerId(playerId) {
+        const id = playerId.toString();
+        return id.substring(0, id.indexOf('-'));
+    }
 }
