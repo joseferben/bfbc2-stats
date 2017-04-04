@@ -9,10 +9,10 @@ describe('ImageMapper', () => {
     });
 
     it('should contain no hashtag symbol', () => {
-        expect(ImageMapper.mapToFileName('WHAT#EVER')).to.be('what ever');
+        expect(ImageMapper.mapToFileName('WHAT#EVER 42')).to.be('what_ever_42');
     });
 
     it('should replace hashtag symbol with blank space', () => {
-      expect(ImageMapper.mapToFileName('#')).to.be(' ');
+      expect(ImageMapper.mapToFileName('#')).to.be('_');
     });
 });
